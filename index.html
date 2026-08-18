@@ -165,7 +165,7 @@
 <div class="tabs">
     <button class="tab-btn active" data-tab="stats">📊 Статистика</button>
     <button class="tab-btn" data-tab="logs">📋 Логи</button>
-    <button class="tab-btn" data-tab="time">⏱ Время</button>
+    <button class="tab-btn" data-tab="users">👥 Пользователи</button>
 </div>
 
 <!-- Stats -->
@@ -197,11 +197,11 @@
     <div class="spinner" id="logs-spinner">Загрузка…</div>
 </div>
 
-<!-- Time -->
-<div id="tab-time" class="tab-content">
-    <ul class="entry-list" id="time-list"></ul>
-    <button class="load-more" id="time-more" style="display:none;">Загрузить ещё</button>
-    <div class="spinner" id="time-spinner">Загрузка…</div>
+<!-- Users -->
+<div id="tab-users" class="tab-content">
+    <ul class="entry-list" id="users-list"></ul>
+    <button class="load-more" id="users-more" style="display:none;">Загрузить ещё</button>
+    <div class="spinner" id="users-spinner">Загрузка…</div>
 </div>
 
 <script>
@@ -229,7 +229,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
         document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
 
         if (btn.dataset.tab === 'logs' && !logsLoaded) loadLogs();
-        if (btn.dataset.tab === 'time' && !timeLoaded) loadTime();
+        if (btn.dataset.tab === 'users' && !usersLoaded) loadUsers();
     });
 });
 
@@ -322,58 +322,45 @@ async function deleteLog(id, btn) {
 
 document.getElementById('logs-more').addEventListener('click', () => loadLogs(true));
 
-// ─── Time entries ────────────────────────────────────
-let timeLoaded = false;
-let timeOffset = 0;
+// ─── Users ───────────────────────────────────────────
+let usersLoaded = false;
+let usersOffset = 0;
 
-async function loadTime(more = false) {
-    if (!more) timeOffset = 0;
+async function loadUsers(more = false) {
+    if (!more) usersOffset = 0;
     try {
-        const items = await api(`/api/time?limit=${LIMIT}&offset=${timeOffset}`);
-        const list = document.getElementById('time-list');
+        const items = await api(`/api/users?limit=${LIMIT}&offset=${usersOffset}`);
+        const list = document.getElementById('users-list');
         if (!more) list.innerHTML = '';
 
         if (items.length === 0 && !more) {
-            list.innerHTML = '<li class="empty">Нет записей</li>';
+            list.innerHTML = '<li class="empty">Нет пользователей</li>';
         }
 
-        items.forEach(e => {
+        items.forEach(u => {
             const li = document.createElement('li');
             li.className = 'entry-item';
             li.innerHTML = `
-                <div class="date">${e.date}</div>
+                <div class="date">${u.first_name} ${u.last_name}</div>
                 <div class="details">
-                    Приход: ${e.time_in || '—'}<br>
-                    Уход: ${e.time_out || '—'}<br>
-                    ${e.address}
+                    📱 ${u.phone_number}<br>
+                    🆔 ${u.telegram_id}
                 </div>
-                <button class="delete-btn" onclick="deleteTime(${e.id}, this)">✕</button>
             `;
             list.appendChild(li);
         });
 
-        document.getElementById('time-more').style.display =
+        document.getElementById('users-more').style.display =
             items.length === LIMIT ? 'block' : 'none';
-        timeOffset += items.length;
-        timeLoaded = true;
+        usersOffset += items.length;
+        usersLoaded = true;
     } catch (e) {
-        console.error('Time error', e);
+        console.error('Users error', e);
     }
-    document.getElementById('time-spinner').style.display = 'none';
+    document.getElementById('users-spinner').style.display = 'none';
 }
 
-async function deleteTime(id, btn) {
-    if (!confirm('Удалить запись?')) return;
-    try {
-        await api(`/api/time/${id}`, { method: 'DELETE' });
-        btn.closest('.entry-item').remove();
-        loadStats();
-    } catch (e) {
-        alert('Ошибка: ' + e.message);
-    }
-}
-
-document.getElementById('time-more').addEventListener('click', () => loadTime(true));
+document.getElementById('users-more').addEventListener('click', () => loadUsers(true));
 
 // ─── Init ────────────────────────────────────────────
 loadMe();
