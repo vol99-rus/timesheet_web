@@ -15,9 +15,7 @@
             --btn-text: var(--tg-theme-button-text-color, #ffffff);
             --secondary-bg: var(--tg-theme-secondary-bg-color, #f0f0f0);
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
@@ -25,153 +23,79 @@
             padding: 12px;
             min-height: 100vh;
         }
-
         .header {
             text-align: center;
             padding: 16px 0;
             border-bottom: 1px solid var(--hint);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .header h1 { font-size: 20px; margin-bottom: 4px; }
         .header p  { font-size: 14px; color: var(--hint); }
 
-        /* ─── Tabs ─── */
-        .tabs {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 16px;
-            overflow-x: auto;
-        }
+        /* Tabs */
+        .tabs { display: flex; gap: 4px; margin-bottom: 12px; overflow-x: auto; }
         .tab-btn {
-            flex: 1;
-            padding: 10px 6px;
-            border: none;
-            border-radius: 8px;
-            background: var(--secondary-bg);
-            color: var(--text);
-            font-size: 13px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s;
+            flex: 1; padding: 10px 6px; border: none; border-radius: 8px;
+            background: var(--secondary-bg); color: var(--text);
+            font-size: 13px; cursor: pointer; white-space: nowrap;
         }
-        .tab-btn.active {
-            background: var(--btn);
-            color: var(--btn-text);
-        }
-
+        .tab-btn.active { background: var(--btn); color: var(--btn-text); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* ─── Stats cards ─── */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 16px;
+        /* Month selector */
+        .month-bar {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; margin-bottom: 12px;
         }
+        .month-bar button {
+            background: var(--secondary-bg); border: none; border-radius: 8px;
+            padding: 8px 14px; font-size: 18px; cursor: pointer; color: var(--text);
+        }
+        .month-bar span { font-size: 16px; font-weight: 600; min-width: 140px; text-align: center; }
+
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
         .stat-card {
-            background: var(--secondary-bg);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
+            background: var(--secondary-bg); border-radius: 12px;
+            padding: 16px; text-align: center;
         }
-        .stat-card .value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--link);
-        }
-        .stat-card .label {
-            font-size: 12px;
-            color: var(--hint);
-            margin-top: 4px;
-        }
+        .stat-card .value { font-size: 28px; font-weight: 700; color: var(--link); }
+        .stat-card .label { font-size: 12px; color: var(--hint); margin-top: 4px; }
 
-        /* ─── Lists ─── */
+        /* Lists */
         .entry-list { list-style: none; }
-
         .entry-item {
-            background: var(--secondary-bg);
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 8px;
-            position: relative;
+            background: var(--secondary-bg); border-radius: 10px;
+            padding: 12px; margin-bottom: 8px; position: relative;
         }
-        .entry-item .date {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-        .entry-item .details {
-            font-size: 13px;
-            color: var(--hint);
-            line-height: 1.5;
-        }
+        .entry-item .date { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+        .entry-item .details { font-size: 13px; color: var(--hint); line-height: 1.5; }
 
         .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #e74c3c;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 4px 10px;
-            font-size: 12px;
-            cursor: pointer;
+            position: absolute; top: 10px; right: 10px;
+            background: #e74c3c; color: #fff; border: none;
+            border-radius: 6px; padding: 4px 10px; font-size: 12px; cursor: pointer;
         }
-        .delete-btn:active {
-            opacity: 0.7;
-        }
+        .delete-btn:active { opacity: 0.7; }
 
         .load-more {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: var(--secondary-bg);
-            color: var(--link);
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-        .load-more:active {
-            opacity: 0.7;
+            display: block; width: 100%; padding: 12px; border: none;
+            border-radius: 10px; background: var(--secondary-bg);
+            color: var(--link); font-size: 14px; cursor: pointer; margin-top: 8px;
         }
 
-        .empty {
-            text-align: center;
-            color: var(--hint);
-            padding: 32px 0;
-            font-size: 14px;
-        }
+        .empty { text-align: center; color: var(--hint); padding: 32px 0; font-size: 14px; }
+        .spinner { text-align: center; padding: 24px; color: var(--hint); }
 
-        .spinner {
-            text-align: center;
-            padding: 24px;
-            color: var(--hint);
-        }
-
-        /* ─── Time entry ─── */
         .time-hours {
-            display: inline-block;
-            background: var(--btn);
-            color: var(--btn-text);
-            border-radius: 6px;
-            padding: 2px 8px;
-            font-size: 13px;
-            font-weight: 600;
+            display: inline-block; background: var(--btn); color: var(--btn-text);
+            border-radius: 6px; padding: 2px 8px; font-size: 13px; font-weight: 600;
         }
-
         .time-photos {
-            display: inline-block;
-            background: #27ae60;
-            color: #fff;
-            border-radius: 6px;
-            padding: 2px 8px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-left: 4px;
+            display: inline-block; background: #27ae60; color: #fff;
+            border-radius: 6px; padding: 2px 8px; font-size: 13px;
+            font-weight: 600; margin-left: 4px;
         }
     </style>
 </head>
@@ -189,51 +113,44 @@
     <button class="tab-btn" data-tab="users">👥 Люди</button>
 </div>
 
+<!-- Month selector (shared) -->
+<div class="month-bar" id="month-bar">
+    <button onclick="changeMonth(-1)">◀</button>
+    <span id="month-label"></span>
+    <button onclick="changeMonth(1)">▶</button>
+</div>
+
 <!-- Stats -->
 <div id="tab-stats" class="tab-content active">
     <div class="stats-grid">
-        <div class="stat-card">
-            <div class="value" id="s-logs">—</div>
-            <div class="label">Записей</div>
-        </div>
-        <div class="stat-card">
-            <div class="value" id="s-photos">—</div>
-            <div class="label">Снимков</div>
-        </div>
-        <div class="stat-card">
-            <div class="value" id="s-days">—</div>
-            <div class="label">Рабочих дней</div>
-        </div>
-        <div class="stat-card">
-            <div class="value" id="s-hours">—</div>
-            <div class="label">Часов</div>
-        </div>
+        <div class="stat-card"><div class="value" id="s-logs">—</div><div class="label">Записей</div></div>
+        <div class="stat-card"><div class="value" id="s-photos">—</div><div class="label">Снимков</div></div>
+        <div class="stat-card"><div class="value" id="s-days">—</div><div class="label">Раб. дней</div></div>
+        <div class="stat-card"><div class="value" id="s-hours">—</div><div class="label">Часов</div></div>
     </div>
 </div>
 
 <!-- Time -->
 <div id="tab-time" class="tab-content">
     <ul class="entry-list" id="time-list"></ul>
-    <button class="load-more" id="time-more" style="display:none;">Загрузить ещё</button>
-    <div class="spinner" id="time-spinner">Загрузка…</div>
+    <div class="spinner" id="time-spinner" style="display:none;">Загрузка…</div>
 </div>
 
 <!-- Logs -->
 <div id="tab-logs" class="tab-content">
     <ul class="entry-list" id="logs-list"></ul>
     <button class="load-more" id="logs-more" style="display:none;">Загрузить ещё</button>
-    <div class="spinner" id="logs-spinner">Загрузка…</div>
+    <div class="spinner" id="logs-spinner" style="display:none;">Загрузка…</div>
 </div>
 
 <!-- Users -->
 <div id="tab-users" class="tab-content">
     <ul class="entry-list" id="users-list"></ul>
     <button class="load-more" id="users-more" style="display:none;">Загрузить ещё</button>
-    <div class="spinner" id="users-spinner">Загрузка…</div>
+    <div class="spinner" id="users-spinner" style="display:none;">Загрузка…</div>
 </div>
 
 <script>
-// ─── Config ──────────────────────────────────────────
 const API_BASE = 'https://coffee-expansion-tower-poet.trycloudflare.com';
 
 const tg = window.Telegram.WebApp;
@@ -241,27 +158,52 @@ tg.expand();
 tg.ready();
 
 const initData = tg.initData;
+const headers = { 'Content-Type': 'application/json', 'X-Init-Data': initData };
 
-const headers = {
-    'Content-Type': 'application/json',
-    'X-Init-Data': initData,
-};
+const MONTH_NAMES = ['','Январь','Февраль','Март','Апрель','Май','Июнь',
+    'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+
+const now = new Date();
+let curMonth = now.getMonth() + 1;
+let curYear = now.getFullYear();
+
+function updateMonthLabel() {
+    document.getElementById('month-label').textContent =
+        MONTH_NAMES[curMonth] + ' ' + curYear;
+}
+
+function changeMonth(delta) {
+    curMonth += delta;
+    if (curMonth > 12) { curMonth = 1; curYear++; }
+    if (curMonth < 1)  { curMonth = 12; curYear--; }
+    updateMonthLabel();
+    reloadCurrentTab();
+}
+
+function mq() { return `month=${curMonth}&year=${curYear}`; }
 
 // ─── Tabs ────────────────────────────────────────────
+let activeTab = 'stats';
+
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-
-        if (btn.dataset.tab === 'logs' && !logsLoaded) loadLogs();
-        if (btn.dataset.tab === 'time' && !timeLoaded) loadTime();
-        if (btn.dataset.tab === 'users' && !usersLoaded) loadUsers();
+        activeTab = btn.dataset.tab;
+        document.getElementById('tab-' + activeTab).classList.add('active');
+        reloadCurrentTab();
     });
 });
 
-// ─── API helpers ─────────────────────────────────────
+function reloadCurrentTab() {
+    if (activeTab === 'stats') loadStats();
+    if (activeTab === 'time')  loadTime();
+    if (activeTab === 'logs')  { logsOffset = 0; loadLogs(); }
+    if (activeTab === 'users') { usersOffset = 0; loadUsers(); }
+}
+
+// ─── API ─────────────────────────────────────────────
 async function api(path, opts = {}) {
     const resp = await fetch(API_BASE + path, { headers, ...opts });
     if (!resp.ok) {
@@ -271,12 +213,11 @@ async function api(path, opts = {}) {
     return resp.json();
 }
 
-// ─── User info ───────────────────────────────────────
+// ─── Me ──────────────────────────────────────────────
 async function loadMe() {
     try {
         const u = await api('/api/me');
-        document.getElementById('user-name').textContent =
-            u.first_name + ' ' + u.last_name;
+        document.getElementById('user-name').textContent = u.first_name + ' ' + u.last_name;
         document.getElementById('user-phone').textContent = u.phone_number;
     } catch (e) {
         document.getElementById('user-name').textContent = 'Не зарегистрирован';
@@ -286,70 +227,57 @@ async function loadMe() {
 // ─── Stats ───────────────────────────────────────────
 async function loadStats() {
     try {
-        const s = await api('/api/stats');
+        const s = await api(`/api/stats?${mq()}`);
         document.getElementById('s-logs').textContent = s.total_logs;
         document.getElementById('s-photos').textContent = s.total_photos;
         document.getElementById('s-days').textContent = s.total_days;
         document.getElementById('s-hours').textContent = s.total_hours;
-    } catch (e) {
-        console.error('Stats error', e);
-    }
+    } catch (e) { console.error('Stats error', e); }
 }
 
 // ─── Time ────────────────────────────────────────────
-let timeLoaded = false;
-let timeOffset = 0;
-const LIMIT = 30;
-
-async function loadTime(more = false) {
-    if (!more) timeOffset = 0;
+async function loadTime() {
+    const list = document.getElementById('time-list');
+    const spin = document.getElementById('time-spinner');
+    list.innerHTML = ''; spin.style.display = 'block';
     try {
-        const items = await api(`/api/time?limit=${LIMIT}&offset=${timeOffset}`);
-        const list = document.getElementById('time-list');
-        if (!more) list.innerHTML = '';
-
-        if (items.length === 0 && !more) {
-            list.innerHTML = '<li class="empty">Нет данных о времени</li>';
+        const items = await api(`/api/time?${mq()}`);
+        spin.style.display = 'none';
+        if (items.length === 0) {
+            list.innerHTML = '<li class="empty">Нет данных за этот месяц</li>';
+            return;
         }
-
         items.forEach(e => {
             const li = document.createElement('li');
             li.className = 'entry-item';
             li.innerHTML = `
                 <div class="date">${e.date}</div>
                 <div class="details">
-                    <span class="time-hours">⏱ ${e.hours} ч</span>
+                    <span class="time-hours">⏱ ${e.hours}</span>
                     ${e.photos > 0 ? `<span class="time-photos">📷 ${e.photos}</span>` : ''}
-                </div>
-            `;
+                </div>`;
             list.appendChild(li);
         });
-
-        document.getElementById('time-more').style.display =
-            items.length === LIMIT ? 'block' : 'none';
-        timeOffset += items.length;
-        timeLoaded = true;
-    } catch (e) {
-        console.error('Time error', e);
-    }
-    document.getElementById('time-spinner').style.display = 'none';
+    } catch (e) { spin.style.display = 'none'; console.error('Time error', e); }
 }
 
-document.getElementById('time-more').addEventListener('click', () => loadTime(true));
-
 // ─── Logs ────────────────────────────────────────────
-let logsLoaded = false;
 let logsOffset = 0;
+const LIMIT = 30;
 
 async function loadLogs(more = false) {
     if (!more) logsOffset = 0;
+    const list = document.getElementById('logs-list');
+    const spin = document.getElementById('logs-spinner');
+    if (!more) list.innerHTML = '';
+    spin.style.display = 'block';
+
     try {
-        const items = await api(`/api/logs?limit=${LIMIT}&offset=${logsOffset}`);
-        const list = document.getElementById('logs-list');
-        if (!more) list.innerHTML = '';
+        const items = await api(`/api/logs?${mq()}&limit=${LIMIT}&offset=${logsOffset}`);
+        spin.style.display = 'none';
 
         if (items.length === 0 && !more) {
-            list.innerHTML = '<li class="empty">Нет записей</li>';
+            list.innerHTML = '<li class="empty">Нет записей за этот месяц</li>';
         }
 
         items.forEach(e => {
@@ -362,19 +290,79 @@ async function loadLogs(more = false) {
                     📷 Снимков: ${e.photo_count}
                     ${e.comment ? '<br>💬 ' + e.comment : ''}
                 </div>
-                <button class="delete-btn" onclick="deleteLog(${e.id}, this)">✕</button>
-            `;
+                <button class="delete-btn" onclick="deleteLog(${e.id}, this)">✕</button>`;
             list.appendChild(li);
         });
 
         document.getElementById('logs-more').style.display =
             items.length === LIMIT ? 'block' : 'none';
         logsOffset += items.length;
-        logsLoaded = true;
-    } catch (e) {
-        console.error('Logs error', e);
-    }
-    document.getElementById('logs-spinner').style.display = 'none';
+    } catch (e) { spin.style.display = 'none'; console.error('Logs error', e); }
 }
 
-async function deleteLog(id, btn)
+async function deleteLog(id, btn) {
+    if (!confirm('Удалить запись?')) return;
+    try {
+        await api(`/api/logs/${id}`, { method: 'DELETE' });
+        btn.closest('.entry-item').remove();
+        loadStats();
+    } catch (e) { alert('Ошибка: ' + e.message); }
+}
+
+document.getElementById('logs-more').addEventListener('click', () => loadLogs(true));
+
+// ─── Users ───────────────────────────────────────────
+let usersOffset = 0;
+
+async function loadUsers(more = false) {
+    if (!more) usersOffset = 0;
+    const list = document.getElementById('users-list');
+    const spin = document.getElementById('users-spinner');
+    if (!more) list.innerHTML = '';
+    spin.style.display = 'block';
+
+    try {
+        const items = await api(`/api/users?limit=${LIMIT}&offset=${usersOffset}`);
+        spin.style.display = 'none';
+
+        if (items.length === 0 && !more) {
+            list.innerHTML = '<li class="empty">Нет пользователей</li>';
+        }
+
+        items.forEach(u => {
+            const li = document.createElement('li');
+            li.className = 'entry-item';
+            li.innerHTML = `
+                <div class="date">${u.first_name} ${u.last_name}</div>
+                <div class="details">
+                    📱 ${u.phone_number}<br>
+                    🆔 ${u.telegram_id}
+                </div>
+                <button class="delete-btn" onclick="deleteUser(${u.telegram_id}, this)">✕</button>`;
+            list.appendChild(li);
+        });
+
+        document.getElementById('users-more').style.display =
+            items.length === LIMIT ? 'block' : 'none';
+        usersOffset += items.length;
+    } catch (e) { spin.style.display = 'none'; console.error('Users error', e); }
+}
+
+async function deleteUser(id, btn) {
+    if (!confirm('Удалить пользователя?')) return;
+    try {
+        await api(`/api/users/${id}`, { method: 'DELETE' });
+        btn.closest('.entry-item').remove();
+    } catch (e) { alert('Ошибка: ' + e.message); }
+}
+
+document.getElementById('users-more').addEventListener('click', () => loadUsers(true));
+
+// ─── Init ────────────────────────────────────────────
+updateMonthLabel();
+loadMe();
+loadStats();
+</script>
+
+</body>
+</html>
